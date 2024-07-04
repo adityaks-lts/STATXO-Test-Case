@@ -1,35 +1,36 @@
 import { Button, FormControl, FormLabel, Heading, Input, Text, VStack, useToast } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 export function Login(){
 
     const [input, setInput] = useState({userName:"", password:""})
     const toast = useToast()
+    const navigate = useNavigate();
     const handleLogin = async (e) => {
         e.preventDefault();
         
         try {
-          const response = await axios.get('https://statxo-test-case.onrender.com/users/');
+            console.log(input);
+          const response = await axios.get('http://localhost:8080/users/'+input.userName+"/"+input.password);
             console.log(response);
-          if (response.status != 200) {
+         
             toast({
-              title: 'Login failed.',
-              description: 'Wrong email or password.',
-              status: 'error',
-              duration: 3000,
-              isClosable: true,
+                title: 'Login successful.',
+                status: 'success',
+                duration: 3000,
+                isClosable: true,
             });
+            localStorage.setItem('loggedIn', JSON.stringify(response.data));
+            navigate("/")
             return;
-          }
     
-        //   localStorage.setItem('loggedIn', JSON.stringify(response));
         } catch (error) {
           console.error('Error fetching user credentials:', error);
           toast({
-            title: 'Error',
-            description: 'Failed to fetch user credentials.',
+            title: 'Login failed.',
+            description: 'Wrong email or password.',
             status: 'error',
             duration: 3000,
             isClosable: true,

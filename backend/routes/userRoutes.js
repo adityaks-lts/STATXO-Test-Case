@@ -29,9 +29,10 @@ userRoutes.post("/",async (req,res)=>{
 })
 
 // For login
-userRoutes.get("/",async (req,res)=>{
-	const {userName,password}=req.body
+userRoutes.get("/:userName/:password",async (req,res)=>{
+	const {userName,password}=req.params
 	try{
+		// console.log(req.params);
 		const user=await userModel.find({userName})
 		if(user.length>0){
 			bcrypt.compare(password, user[0].password, (err, result)=>{

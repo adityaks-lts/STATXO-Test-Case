@@ -21,15 +21,15 @@ export function Signup(){
                 duration: 3000,
                 isClosable: true,
             });
+            navigate("/login")
             return;
           }
     
-          localStorage.setItem('loggedIn', JSON.stringify(user));
         } catch (error) {
           console.error('Error fetching user credentials:', error);
           toast({
             title: 'Error',
-            description: 'Failed to fetch user credentials.',
+            description: 'Failed to Register.',
             status: 'error',
             duration: 3000,
             isClosable: true,
