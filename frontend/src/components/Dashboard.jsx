@@ -1,47 +1,35 @@
-import { Heading, Table, TableCaption, TableContainer, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../redux/action";
 import { Form } from "./Form";
-
+import { Button, Heading, useToast } from "@chakra-ui/react";
+import { DataTable } from "./Table";
+import { useNavigate } from "react-router-dom";
 export function Dashboard(){
     const dispatch = useDispatch();
+    const lst = JSON.parse(localStorage.getItem("loggedIn"))
+    const DomUpdate = useSelector(state => state.DomUpdate)
+    const navigate = useNavigate();
+    const toast = useToast();
     useEffect(()=>{
         dispatch(fetchData());
-    },[])
-    const data = useSelector(state => state.data);
-    useEffect(()=>{
-        console.log(data);
-
-    },[data])
+    },[DomUpdate.status])
+    
     return(<div>
-        <Heading>Dashboard</Heading>
-        <div>
-        <Form/>
+        <div className="dashboard-header">
+        <Heading mx={"auto"} >Dashboard</Heading>
+        <Form />
+        <Button onClick={()=>{
+            navigate("/login");
+            toast({
+                title: "Signing out",
+                status: "info",
+                isClosable: true,
+                duration:3000
+              }) 
+            localStorage.removeItem("loggedIn")
+        }} >Sign out</Button>
         </div>
-        <div>
-        <TableContainer>
-  <Table variant='simple'>
-    <Thead>
-      <Tr>
-        <Th isNumeric>ID</Th>
-        <Th isNumeric>Quantity</Th>
-        <Th isNumeric>Amount</Th>
-        <Th isNumeric>Posting Year</Th>
-        <Th>Posting Month</Th>
-        <Th>Action Type</Th>
-        <Th>Action Number</Th>
-        <Th>Action Name</Th>
-        <Th>Status</Th>
-        <Th>Impact</Th>
-      </Tr>
-    </Thead>
-    <Tbody>
-        {}
-    </Tbody>
-   
-  </Table>
-</TableContainer>
-        </div>
+        <DataTable/>
     </div> )
 }

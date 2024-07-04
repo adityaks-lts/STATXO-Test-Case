@@ -19,3 +19,9 @@
   border-radius: 20px;
   padding: 20px;
 }
+
+.dashboard-header{
+  display: flex;
+  justify-content: end;
+  margin-bottom: 50px;
+}

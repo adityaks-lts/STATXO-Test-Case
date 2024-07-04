@@ -58,9 +58,9 @@ testDataRoutes.patch("/admin/:id", role(["admin"]),async(req,res)=>{
             const found = await testDataModel.find({_id:id});
             if(found.length > 0){
 
-                const {quantity,amount,postingYear, postingMonth,actionType,actionNumber,actionName,Impact} = found[0];
+                const {quantity,amount,postingYear, postingMonth,actionType,actionNumber,actionName,Impact,status} = found[0];
                 const deletedData = await testDataModel.deleteOne({_id:id});
-                const newData = new testDataModel({quantity,amount,postingYear, postingMonth,actionType,actionNumber,actionName,Impact, status:req.body.status})
+                const newData = new testDataModel({quantity,amount,postingYear, postingMonth,actionType,actionNumber,actionName,Impact,status, ...req.body})
                 newData.save();
                 if( deletedData.deletedCount == 1) res.status(200).json({message:"Updated Successfully"});
                 else res.sendStatus(204);

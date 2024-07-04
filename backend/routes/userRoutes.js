@@ -41,7 +41,7 @@ userRoutes.get("/:userName/:password",async (req,res)=>{
 					const token = jwt.sign({userName:user[0].userName, id:user[0]._id, role:user[0].role},secret_key,(err, token)=>{
 						if(err) console.log(err);
 						else{
-							res.status(200).json({accessToken:token});
+							res.status(200).json({user:user[0],accessToken:token});
 						}
 					})
 				}

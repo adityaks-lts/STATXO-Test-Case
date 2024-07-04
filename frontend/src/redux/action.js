@@ -6,7 +6,7 @@ export const fetchData = () => async(dispatch) =>{
 
      axios.get("https://statxo-test-case.onrender.com/data",{headers:{Authorization: `Bearer ${token.accessToken}`}})
     .then((res)=>{
-        console.log(res);
+        // console.log(res);
         dispatch({payload:res.data, type:"SET_SUCCESS"})
 
     })
