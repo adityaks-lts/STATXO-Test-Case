@@ -3,8 +3,10 @@ const connectDB = require("../config/db")
 const userRoutes = require("../routes/userRoutes");
 const testDataRoutes = require("../routes/testDataRoutes");
 const auth = require("../middleware/auth");
-
-// const auth = require("./middleware/auth");
+const morgan = require("../middleware/logs");
+const fs = require("fs");
+const path = require('path')
+var updateLogStream = fs.createWriteStream(path.join(__dirname, "../logs/morganLogs.txt"), { flags: 'a' })
 const app = express();
 require("dotenv").config();
 
@@ -12,7 +14,11 @@ const port = process.env.PORT
 
 app.use(express.json());
 app.use("/users",userRoutes);
-app.use("/data",auth,testDataRoutes);
+app.use("/data",auth,morgan('{"request": ":request" , "id": ":id" , "data": ":date"}', {skip:(req)=>{
+    // console.log(req.method);
+    if(req.method == "GET") return true;
+    else return false;
+}, stream:updateLogStream}),testDataRoutes);
 app.get("/",(req, res)=>{
     res.send("<h1>This is homepage of the server</h1>")
 })
