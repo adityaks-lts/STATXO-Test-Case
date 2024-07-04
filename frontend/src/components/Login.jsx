@@ -13,7 +13,7 @@ export function Login(){
         
         try {
             console.log(input);
-          const response = await axios.get('http://localhost:8080/users/'+input.userName+"/"+input.password);
+          const response = await axios.get('https://statxo-test-case.onrender.com/users/'+input.userName+"/"+input.password);
             console.log(response);
          
             toast({
