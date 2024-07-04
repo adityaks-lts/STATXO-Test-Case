@@ -7,7 +7,6 @@ import { Form } from "./Form";
 export function Dashboard(){
     const dispatch = useDispatch();
     useEffect(()=>{
-        console.log("hello");
         dispatch(fetchData());
     },[])
     const data = useSelector(state => state.data);
