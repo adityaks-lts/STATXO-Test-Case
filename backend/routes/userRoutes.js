@@ -30,24 +30,24 @@ userRoutes.post("/",async (req,res)=>{
 
 // For login
 userRoutes.get("/",async (req,res)=>{
-	const {email,password}=req.body
+	const {userName,password}=req.body
 	try{
-		const user=await userModel.find({email})
+		const user=await userModel.find({userName})
 		if(user.length>0){
 			bcrypt.compare(password, user[0].password, (err, result)=>{
 				if(result){
 					const secret_key = process.env.SECRET_KEY;
-					const token = jwt.sign({email:user[0].email, id:user[0]._id, role:user[0].role},secret_key,(err, token)=>{
+					const token = jwt.sign({userName:user[0].userName, id:user[0]._id, role:user[0].role},secret_key,(err, token)=>{
 						if(err) console.log(err);
 						else{
 							res.status(200).json({accessToken:token});
 						}
 					})
 				}
-				else{res.send("Wrong Password")}
+				else{res.status(400).send("Wrong Password")}
 			})
 		} else {
-			res.send("Login Failed")
+			res.status(400).send("Login Failed")
 		}
 	} catch(err){
 		res.sendStatus(500)
