@@ -27,7 +27,7 @@ testDataRoutes.post("/", role(["admin", "user"]), async(req,res)=>{
     }
 })
 
-testDataRoutes.patch("/:id", role(["admin","user"]),async(req,res)=>{
+testDataRoutes.patch("user/:id", role(["admin","user"]),async(req,res)=>{
     try{
         const id = req.params.id;
         if(req.body.status == undefined){

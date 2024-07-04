@@ -12,21 +12,40 @@ import {
   Th,
   Thead,
   Tr,
+  useToast,
 } from "@chakra-ui/react";
+import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
 export function DataTable() {
   const user = JSON.parse(localStorage.getItem("loggedIn"));
+  const postUrl = user.role == "user" ? "https://statxo-test-case.onrender.com/data" : "https://statxo-test-case.onrender.com/data/admin/"
   const [editMode, setEditMode] = useState(false);
   const data = useSelector((state) => state.data);
   const ActionNames = ["Action1", "Action2", "Action3"]
   const ActionTypes = ["Type1", "Type2", "Type3"]
   const [editData, setEditData] = useState({});
-
+  const config = {headers:{Authorization:`Bearer ${user.accessToken}`}}
+  const toast = useToast();
+  // console.log(user.role);
   function handleUpdate() {
     Object.keys(editData).forEach((elem)=>{
-      console.log(elem, editData.elem);
+      console.log(elem, editData[elem]);
+      axios.patch(postUrl+elem,editData[elem], config)
+      .then(res => {
+        // 
+        console.log(elem, "Success");
+      })
+      .catch((err)=>{
+        // toast({
+        //   title:"Some error have occurred",
+        //   status:"failed",
+        //   isClosable:true,
+        //   duration:1000,
+        // })
+        console.log(elem, "Failed", err);
+      })
     })
   }
 
@@ -147,8 +166,8 @@ export function DataTable() {
                         )}
                       </Td>
                       <Td>
-                        {!editMode && elem.status}
-                        {editMode && (
+                        {(!editMode || user.role == "user") && elem.status}
+                        {editMode && user.role == "admin" && (
                           <Input
                             value={elem.status}
                             type="text"
