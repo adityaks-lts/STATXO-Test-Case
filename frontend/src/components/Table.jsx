@@ -25,7 +25,9 @@ export function DataTable() {
   const [editData, setEditData] = useState({});
 
   function handleUpdate() {
-    console.log(editData);
+    Object.keys(editData).forEach((elem)=>{
+      console.log(elem, editData.elem);
+    })
   }
 
   return (
