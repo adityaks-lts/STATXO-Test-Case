@@ -9,15 +9,23 @@ require("dotenv").config();
 userRoutes.post("/",async (req,res)=>{
 	try{
         var userData = req.body;
-        bcrypt.hash(userData.password, 8, async (err, hash)=>{
-            const user = new userModel({...userData,password:hash});
-            await user.save();
-        })
+		const foundUser = await userModel.find({$or: [{email:req.body.email, userName:req.body.userName}]});
+		console.log(foundUser)
+		if(foundUser.length == 0){
+
+			bcrypt.hash(userData.password, 8, async (err, hash)=>{
+				const user = new userModel({...userData,password:hash});
+				await user.save();
+				res.sendStatus(201)
+			})
+		}
+		else{
+			res.status(400).json({message:"Email or Username is already registered"})
+		}
 	}catch(err){
 		console.log(err)
 		res.sendStatus(401)
 	}
-	res.sendStatus(201)
 })
 
 // For login
