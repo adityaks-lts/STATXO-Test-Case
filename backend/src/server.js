@@ -2,6 +2,7 @@ const express = require("express");
 const connectDB = require("../config/db")
 const userRoutes = require("../routes/userRoutes");
 const testDataRoutes = require("../routes/testDataRoutes");
+const loggRote = require("../routes/loggRote")
 const auth = require("../middleware/auth");
 const morgan = require("../middleware/logs");
 const fs = require("fs");
@@ -23,6 +24,7 @@ app.use("/data",auth,morgan('{"request": ":request" , "user":":user" ,"id": ":id
     if(req.method == "GET") return true;
     else return false;
 }, stream:updateLogStream}),testDataRoutes);
+app.use("/logs",loggRote);
 app.get("/",(req, res)=>{
     res.send("<h1>This is homepage of the server</h1>")
 })
