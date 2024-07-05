@@ -47,7 +47,7 @@ export function Form() {
                 <FormControl isRequired bg='white'>
                   <FormLabel bg='white'>Quantity</FormLabel>
                   <Input
-                    type="text"
+                    type="number"
                     name="quantity"
                     placeholder="Quantity"
                     value={input.quantity}
@@ -58,7 +58,7 @@ export function Form() {
                 <FormControl isRequired bg='white'>
                   <FormLabel bg='white'>Amount</FormLabel>
                   <Input
-                    type="text"
+                    type="number"
                     name="amount"
                     placeholder="Amount"
                     value={input.amount}
@@ -83,7 +83,7 @@ export function Form() {
                 <FormControl isRequired bg='white'>
                   <FormLabel bg='white'>Action Number</FormLabel>
                   <Input
-                    type="text"
+                    type="number"
                     name="actionNumber"
                     placeholder="Action Number"
                     value={input.actionNumber}
