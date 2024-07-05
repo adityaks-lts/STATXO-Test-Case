@@ -62,7 +62,7 @@ export function DataTable() {
 
   return (
     <div>
-      <Box display={"flex"} textAlign={"right"} md={4}>
+      <Box display={"flex"} textAlign={"right"} gap={5} md={6}>
         <Form />
         <Logs/>
         <Button
