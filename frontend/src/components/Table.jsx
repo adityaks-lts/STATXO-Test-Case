@@ -19,6 +19,8 @@ import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Logs } from "./logs";
+import { BasicChart } from "./BasicChart";
+
 
 
 export function DataTable() {
@@ -65,6 +67,7 @@ export function DataTable() {
       <Box display={"flex"} textAlign={"right"} gap={5} my={4}>
         <Form />
         <Logs/>
+        {data.status == "success" && <BasicChart/>}
         <Button
 
           onClick={() => {
@@ -211,6 +214,7 @@ export function DataTable() {
             </Tbody>
           </Table>
         </TableContainer>
+        
       </div>
     </div>
   );

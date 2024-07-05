@@ -31,5 +31,6 @@ export function Dashboard(){
         }} >Sign out</Button>
         </div>
         <DataTable/>
+        
     </div> )
 }
