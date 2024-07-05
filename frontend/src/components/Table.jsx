@@ -14,6 +14,7 @@ import {
   Tr,
   useToast,
 } from "@chakra-ui/react";
+import { Form } from "./Form";
 import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -40,14 +41,20 @@ export function DataTable() {
         // 
         dispatch({type:"REFRESH"})
         console.log(elem, "Success");
+        toast({
+          title: `${elem} updated successfully`,
+          status:"success",
+          isClosable:true,
+          duration:1000,
+        })
       })
       .catch((err)=>{
-        // toast({
-        //   title:"Some error have occurred",
-        //   status:"failed",
-        //   isClosable:true,
-        //   duration:1000,
-        // })
+        toast({
+          title:`${elem} Some error have occurred`,
+          status:"failed",
+          isClosable:true,
+          duration:1000,
+        })
         console.log(elem, "Failed", err);
       })
     })
@@ -55,8 +62,9 @@ export function DataTable() {
 
   return (
     <div>
-      <Box textAlign={"right"} md={4}>
-      <Logs/>
+      <Box display={"flex"} textAlign={"right"} md={4}>
+        <Form />
+        <Logs/>
         <Button
 
           onClick={() => {

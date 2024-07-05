@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../redux/action";
-import { Form } from "./Form";
 import { Button, Heading, useToast } from "@chakra-ui/react";
 import { DataTable } from "./Table";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +18,7 @@ export function Dashboard(){
         <div className="dashboard-header">
         <Heading mx={"auto"} >Dashboard</Heading>
         
-        <Form />
+        
         <Button onClick={()=>{
             navigate("/login");
             toast({
