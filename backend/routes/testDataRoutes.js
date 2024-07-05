@@ -27,11 +27,13 @@ testDataRoutes.post("/", role(["admin", "user"]), async(req,res)=>{
     }
 })
 
-testDataRoutes.patch("user/:id", role(["admin","user"]),async(req,res)=>{
+testDataRoutes.patch("/user/:id", role(["admin","user"]),async(req,res)=>{
     try{
+        // console.log(req.params);
         const id = req.params.id;
         if(req.body.status == undefined){
             const found = await testDataModel.find({_id:id});
+            console.log(found);
             if(found.length > 0){
 
                 const {quantity,amount,postingYear, postingMonth,actionType,actionNumber,actionName,Impact, status} = found[0];

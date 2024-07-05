@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export function DataTable() {
   const user = JSON.parse(localStorage.getItem("loggedIn"));
-  const postUrl = user.role == "user" ? "https://statxo-test-case.onrender.com/data/user/" : "https://statxo-test-case.onrender.com/data/admin/"
+  var postUrl = user.role == "user" ? "https://statxo-test-case.onrender.com/data/user/" : "https://statxo-test-case.onrender.com/data/admin/"
   const [editMode, setEditMode] = useState(false);
   const data = useSelector((state) => state.data);
   const ActionNames = ["Action1", "Action2", "Action3"]

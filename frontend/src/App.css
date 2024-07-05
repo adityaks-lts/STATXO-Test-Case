@@ -22,6 +22,7 @@
 
 .dashboard-header{
   display: flex;
+  flex-wrap: wrap;
   justify-content: end;
   margin-bottom: 50px;
 }

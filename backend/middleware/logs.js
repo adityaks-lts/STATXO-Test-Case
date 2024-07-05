@@ -8,10 +8,21 @@ morgan.token("request", (req)=>{
 })
 
 morgan.token("id", (req)=>{
-    const id = req.params.id;
-    if(id) return id;
-    else return 0;
+    if(req.params){
+        const id = req.params.id;
+        if(id) return id;
+        else return 0;
 
+    }
+    return "-"
+
+})
+
+morgan.token("user", (req)=>{
+    if(req.user){
+        return req.user.userName;
+    }
+    else return "Unknown";
 })
 
 module.exports = morgan;
