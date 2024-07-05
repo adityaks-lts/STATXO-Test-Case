@@ -27,7 +27,8 @@ https://drive.google.com/file/d/1u5bFlWr3btxYgIdybFxNLtoGyqUCLpze/view?usp=shari
 
   ## Screenshots
   ![image](https://github.com/adityaks-lts/STATXO-Test-Case/assets/68063165/1fa2cbcf-0a64-4241-80de-54b7d463ac27)
-  ![image](https://github.com/adityaks-lts/STATXO-Test-Case/assets/68063165/07eb044b-973b-4243-9230-169eb42881ff)
+  ![image](https://github.com/adityaks-lts/STATXO-Test-Case/assets/68063165/47baa160-a23d-4a89-a1c7-3613c85e5a69)
+
 
   
 
