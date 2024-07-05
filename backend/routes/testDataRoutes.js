@@ -54,20 +54,18 @@ testDataRoutes.patch("user/:id", role(["admin","user"]),async(req,res)=>{
 testDataRoutes.patch("/admin/:id", role(["admin"]),async(req,res)=>{
     try{
         const id = req.params.id;
-        if(req.body.status){
-            const found = await testDataModel.find({_id:id});
-            if(found.length > 0){
+        const found = await testDataModel.find({_id:id});
+        if(found.length > 0){
 
-                const {quantity,amount,postingYear, postingMonth,actionType,actionNumber,actionName,Impact,status} = found[0];
-                const deletedData = await testDataModel.deleteOne({_id:id});
-                const newData = new testDataModel({quantity,amount,postingYear, postingMonth,actionType,actionNumber,actionName,Impact,status, ...req.body})
-                newData.save();
-                if( deletedData.deletedCount == 1) res.status(200).json({message:"Updated Successfully"});
-                else res.sendStatus(204);
-            }
-            else res.sendStatus(404);
+            const {quantity,amount,postingYear, postingMonth,actionType,actionNumber,actionName,Impact,status} = found[0];
+            const deletedData = await testDataModel.deleteOne({_id:id});
+            const newData = new testDataModel({quantity,amount,postingYear, postingMonth,actionType,actionNumber,actionName,Impact,status, ...req.body})
+            newData.save();
+            if( deletedData.deletedCount == 1) res.status(200).json({message:"Updated Successfully"});
+            else res.sendStatus(204);
         }
-        else res.sendStatus(500);
+        else res.sendStatus(404);
+        
     }
     catch(err){
         console.log(err);
