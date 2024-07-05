@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { Form } from "./Form";
 import axios from "axios";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Logs } from "./logs";
 import { BasicChart } from "./BasicChart";
@@ -49,6 +49,7 @@ export function DataTable() {
           isClosable:true,
           duration:1000,
         })
+        setEditMode(false);
       })
       .catch((err)=>{
         toast({
@@ -57,9 +58,10 @@ export function DataTable() {
           isClosable:true,
           duration:1000,
         })
-        // console.log(elem, "Failed", err);
+        console.log(elem, "Failed", err);
       })
     })
+    setEditData({});
   }
 
   return (
