@@ -47,7 +47,7 @@ export function Login() {
             <Input
               type="username"
               name="userName"
-              placeholder="Username"
+              placeholder="Username for eg: admin"
               value={input.username}
               onChange={(e) => setInput({ ...input, [e.target.name]: e.target.value })}
               style={{ border: '1px solid' }}
@@ -59,7 +59,7 @@ export function Login() {
               <Input
                 type={show ? 'text' : 'password'}
                 name="password"
-                placeholder="Password"
+                placeholder="Password for eg: admin"
                 value={input.password}
                 onChange={(e) => setInput({ ...input, [e.target.name]: e.target.value })}
                 style={{ border: '1px solid' }}

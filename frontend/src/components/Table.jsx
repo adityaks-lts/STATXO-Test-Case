@@ -64,7 +64,7 @@ export function DataTable() {
 
   return (
     <div>
-      <Box display={"flex"} flexWrap={"wrap"} justifyContent={"center"} alignItems={"center"} gap={5} my={4}>
+      <Box className="dashboard-buttons" display={"flex"} justifyContent={"center"} alignItems={"end"} gap={5} my={4}>
         <Form />
         <Logs/>
         {data.status == "success" && <BasicChart/>}
@@ -89,9 +89,9 @@ export function DataTable() {
                 <Th isNumeric>Posting Year</Th>
                 <Th>Posting Month</Th>
                 <Th>Action Type</Th>
-                <Th>Action Number</Th>
+                <Th isNumeric>Action Number</Th>
                 <Th>Action Name</Th>
-                <Th>Status</Th>
+                <Th> Status </Th>
                 <Th>Impact</Th>
               </Tr>
             </Thead>
@@ -102,16 +102,18 @@ export function DataTable() {
                   return (
                     <Tr key={elem._id}>
                       {/* <Td>{!editMode && elem._id}</Td> */}
-                      <Td>
+                      <Td textAlign={"center"}>
                         {elem.quantity}
                       </Td>
-                      <Td>
+                      <Td textAlign={"center"}>
                         {!editMode && elem.amount}
                         {editMode && (
                           <Input
                             value={elem.amount}
                             type="number"
                             min={0}
+                            textAlign={"center"}
+                            minW={100}
                             name="amount"
                             onChange={(e) => {
                               elem.amount = e.target.value;
@@ -126,18 +128,19 @@ export function DataTable() {
                           />
                         )}
                       </Td>
-                      <Td>
+                      <Td textAlign={"center"}> 
                         {elem.postingYear}
                       </Td>
-                      <Td>
+                      <Td textAlign={"center"}>
                         {elem.postingMonth}
                       </Td>
-                      <Td>
+                      <Td textAlign={"center"}>
                         {!editMode && elem.actionType}
                         {editMode && (
                           <Select
                             value={elem.actionType}
                             name="actionType"
+                            minW={90}
                             onChange={(e) => {
                               elem.actionType = e.target.value;
                               setEditData({
@@ -155,7 +158,7 @@ export function DataTable() {
                           </Select>
                         )}
                       </Td>
-                      <Td>
+                      <Td textAlign={"center"}>
                         {elem.actionNumber}
                       </Td>
                       <Td>
@@ -164,6 +167,7 @@ export function DataTable() {
                           <Select
                             value={elem.actionName}
                             name="actionName"
+                            minW={110}
                             onChange={(e) => {
                               elem.actionName = e.target.value;
                               setEditData({
@@ -188,6 +192,7 @@ export function DataTable() {
                             value={elem.status}
                             type="text"
                             name="status"
+                            minW={120}
                             onChange={(e) => {
                               elem.status = e.target.value;
                               setEditData({

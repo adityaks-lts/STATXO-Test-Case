@@ -26,3 +26,16 @@
   justify-content: end;
   margin-bottom: 50px;
 }
+
+@media (max-width:600px)  {
+  .dashboard-buttons{
+    flex-direction: column;
+    width: 70%;
+    margin: auto;
+  }
+  .dashboard-buttons>button, .dashboard-buttons>div, .dashboard-buttons>div>button{
+    width: 100%;
+  }
+  
+  
+}
