@@ -4,6 +4,8 @@ import {
   Heading,
   Input,
   Select,
+  Skeleton,
+  Stack,
   Table,
   TableCaption,
   TableContainer,
@@ -31,35 +33,35 @@ export function DataTable() {
   const ActionNames = ["Action1", "Action2", "Action3"]
   const ActionTypes = ["Type1", "Type2", "Type3"]
   const [editData, setEditData] = useState({});
-  const config = {headers:{Authorization:`Bearer ${user.accessToken}`}}
+  const config = { headers: { Authorization: `Bearer ${user.accessToken}` } }
   const toast = useToast();
   const dispatch = useDispatch()
   // console.log(user.role);
   function handleUpdate() {
-    Object.keys(editData).forEach((elem)=>{
+    Object.keys(editData).forEach((elem) => {
       // console.log(elem, editData[elem]);
-      axios.patch(postUrl+elem,editData[elem], config)
-      .then(res => {
-        // 
-        dispatch({type:"REFRESH"})
-        // console.log(elem, "Success");
-        toast({
-          title: `${elem} updated successfully`,
-          status:"success",
-          isClosable:true,
-          duration:1000,
+      axios.patch(postUrl + elem, editData[elem], config)
+        .then(res => {
+          // 
+          dispatch({ type: "REFRESH" })
+          // console.log(elem, "Success");
+          toast({
+            title: `${elem} updated successfully`,
+            status: "success",
+            isClosable: true,
+            duration: 1000,
+          })
+          setEditMode(false);
         })
-        setEditMode(false);
-      })
-      .catch((err)=>{
-        toast({
-          title:`${elem} Some error have occurred`,
-          status:"failed",
-          isClosable:true,
-          duration:1000,
+        .catch((err) => {
+          toast({
+            title: `${elem} Some error have occurred`,
+            status: "failed",
+            isClosable: true,
+            duration: 1000,
+          })
+          console.log(elem, "Failed", err);
         })
-        console.log(elem, "Failed", err);
-      })
     })
     setEditData({});
   }
@@ -68,8 +70,8 @@ export function DataTable() {
     <div>
       <Box className="dashboard-buttons" display={"flex"} justifyContent={"center"} alignItems={"end"} gap={5} my={4}>
         <Form />
-        <Logs/>
-        {data.status == "success" && <BasicChart/>}
+        <Logs />
+        {data.status == "success" && <BasicChart />}
         <Button
 
           onClick={() => {
@@ -97,7 +99,68 @@ export function DataTable() {
                 <Th>Impact</Th>
               </Tr>
             </Thead>
+            {data.status == "pending" && 
+                <Tbody>
+                <Tr>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+
+               </Tr>
+               <Tr>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+               </Tr>
+               <Tr>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+               </Tr>
+               <Tr>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+               </Tr>
+               <Tr>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+                <Td><Skeleton height='30px' /></Td>
+               </Tr>
+               </Tbody>
+               }
             <Tbody>
+              
               {data.status == "success" &&
                 data.data.map((elem, index) => {
                   // console.log(elem)
@@ -130,7 +193,7 @@ export function DataTable() {
                           />
                         )}
                       </Td>
-                      <Td textAlign={"center"}> 
+                      <Td textAlign={"center"}>
                         {elem.postingYear}
                       </Td>
                       <Td textAlign={"center"}>
@@ -221,7 +284,7 @@ export function DataTable() {
             </Tbody>
           </Table>
         </TableContainer>
-        
+
       </div>
     </div>
   );
