@@ -19,7 +19,7 @@ export function Dashboard(){
     return(<div>
         <div className="dashboard-header">
         <Heading mx={"auto"} >Dashboard</Heading>
-        l<Logs/>
+        <Logs/>
         <Form />
         <Button onClick={()=>{
             navigate("/login");
