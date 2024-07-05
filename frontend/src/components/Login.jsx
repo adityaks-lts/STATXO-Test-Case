@@ -6,12 +6,13 @@ import axios from 'axios';
 export function Login() {
 
   const [input, setInput] = useState({ userName: "", password: "" })
+  const [loading, setLoading] = useState(false)
   const toast = useToast()
   const navigate = useNavigate();
   const [show, setShow] = useState(false)
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       // const response = await axios.get('http://localhost:8080/users/' + input.userName + "/" + input.password);
       const response = await axios.get('https://statxo-test-case.onrender.com/users/' + input.userName + "/" + input.password);
@@ -36,6 +37,7 @@ export function Login() {
         isClosable: true,
       });
     }
+    
   };
   return (
     <div className="login-section">
@@ -72,7 +74,7 @@ export function Login() {
             </InputGroup>
           </FormControl>
           <Link to="/signup"></Link>
-          <Button type="submit" colorScheme="blue" width="full">
+          <Button isLoading={loading} loadingText="Logging in" type="submit" colorScheme="blue" width="full">
             Login
           </Button>
           <Text mt={4} textAlign="center" bg='white'>

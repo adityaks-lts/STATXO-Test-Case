@@ -5,10 +5,12 @@ import axios from 'axios';
 
 export function Signup(){
     const [input, setInput] = useState({userName:"", email:"", password:""})
+    const [loading, setLoading] = useState(false);
     const toast = useToast();
     const navigate = useNavigate();
     const handleSignin = async (e) => {
-        e.preventDefault();
+      setLoading(true);
+      e.preventDefault();
         
         try {
           const response = await axios.post('https://statxo-test-case.onrender.com/users/',input);
@@ -75,7 +77,7 @@ export function Signup(){
                 />
               </FormControl>
               <Link to="/signup"></Link>
-              <Button type="submit" colorScheme="blue" width="full">
+              <Button isLoading={loading} loadingText="Registering" type="submit" colorScheme="blue" width="full">
               Sign Up
               </Button>
               <Text mt={4} textAlign="center" bg='white'>
