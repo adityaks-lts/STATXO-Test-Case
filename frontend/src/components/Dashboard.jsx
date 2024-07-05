@@ -5,7 +5,6 @@ import { Form } from "./Form";
 import { Button, Heading, useToast } from "@chakra-ui/react";
 import { DataTable } from "./Table";
 import { useNavigate } from "react-router-dom";
-import { Logs } from "./logs";
 export function Dashboard(){
     const dispatch = useDispatch();
     const lst = JSON.parse(localStorage.getItem("loggedIn"))
@@ -19,7 +18,7 @@ export function Dashboard(){
     return(<div>
         <div className="dashboard-header">
         <Heading mx={"auto"} >Dashboard</Heading>
-        <Logs/>
+        
         <Form />
         <Button onClick={()=>{
             navigate("/login");

@@ -20,7 +20,9 @@ export function Logs(){
           <ModalHeader>Logs</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {logs}
+            {logs.split('\n').map(elem =>{
+                return <p>{elem}</p>
+            })}
           </ModalBody>
 
           <ModalFooter>

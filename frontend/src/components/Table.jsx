@@ -17,6 +17,8 @@ import {
 import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Logs } from "./logs";
+
 
 export function DataTable() {
   const user = JSON.parse(localStorage.getItem("loggedIn"));
@@ -54,6 +56,7 @@ export function DataTable() {
   return (
     <div>
       <Box textAlign={"right"} md={4}>
+      <Logs/>
         <Button
 
           onClick={() => {
