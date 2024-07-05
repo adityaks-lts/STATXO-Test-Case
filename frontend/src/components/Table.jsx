@@ -64,7 +64,7 @@ export function DataTable() {
 
   return (
     <div>
-      <Box display={"flex"} textAlign={"right"} gap={5} my={4}>
+      <Box display={"flex"} flexWrap={"wrap"} justifyContent={"center"} alignItems={"center"} gap={5} my={4}>
         <Form />
         <Logs/>
         {data.status == "success" && <BasicChart/>}
