@@ -7,7 +7,6 @@ Chart.register(Tooltip, Legend, ArcElement)
 export function BasicChart(){
     const { isOpen, onOpen, onClose } = useDisclosure();
     const data = useSelector(state => state.data.data)
-    console.log(data);
     const pieChartData = {
         labels:["Low","Mid", "High"],
         datasets:[

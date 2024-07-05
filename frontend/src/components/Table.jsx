@@ -37,12 +37,12 @@ export function DataTable() {
   // console.log(user.role);
   function handleUpdate() {
     Object.keys(editData).forEach((elem)=>{
-      console.log(elem, editData[elem]);
+      // console.log(elem, editData[elem]);
       axios.patch(postUrl+elem,editData[elem], config)
       .then(res => {
         // 
         dispatch({type:"REFRESH"})
-        console.log(elem, "Success");
+        // console.log(elem, "Success");
         toast({
           title: `${elem} updated successfully`,
           status:"success",
@@ -57,7 +57,7 @@ export function DataTable() {
           isClosable:true,
           duration:1000,
         })
-        console.log(elem, "Failed", err);
+        // console.log(elem, "Failed", err);
       })
     })
   }
