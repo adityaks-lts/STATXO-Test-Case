@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors({origin:[process.env.FRONTEND_URL]}))
 
 app.use("/users",userRoutes);
-app.use("/data",auth,morgan('{"request": ":request" , "user":":user" ,"id": ":id" , "data": ":date"}', {skip:(req)=>{
+app.use("/data",auth,morgan('{"request": ":request" , "user":":user" ,"id": ":id" , "date": ":date"}', {skip:(req)=>{
     // console.log(req.method);
     if(req.method == "GET") return true;
     else return false;

@@ -81,7 +81,7 @@ export function Signup(){
               Sign Up
               </Button>
               <Text mt={4} textAlign="center" bg='white'>
-            Don't have an account?{' '}
+            Already registered ? try{' '}
             <Link to="/login">
               <Text as="u" color="blue.500">
                 Login
